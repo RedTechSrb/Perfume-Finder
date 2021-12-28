@@ -1,26 +1,43 @@
 import os
 import pandas as pd
+from re import match
 
+from Perfume import Perfume
 import PerfumeMap
 
 
 def process_volume_file_2(volume):
     print(volume)
-    print(volume.split())
+    volume_part_lists = volume.split()
+    volume_set = 'SET' in volume_part_lists
+    volume_tester = 'Tester' in volume_part_lists
+
+    volume_amount = list(filter(lambda v: match('^\d+ml$', v), volume_part_lists))
+    if len(volume_amount) == 1:
+        volume_amount = volume_amount[0]
+    else:
+        volume_amount = None
+
+    volume_metadata = list(
+        filter(lambda v: (not match('^\d+ml$', v) and v != 'SET' and v != 'Tester'), volume_part_lists))
+
+    print(volume_set, volume_tester, "am:", volume_amount, "md: ", volume_metadata, volume_part_lists)
 
 
 def process_file_2(perfume_map, excel_file):
-
     data = pd.read_excel(excel_file)
-    # perfume_list = data[["Brand", "Description", "Type", "Sex", "Volume", "Net EUR"]]
-    #print(type(perfume_list))
-    #A = [Silly(a.one, a.two) for a in df.itertuples()]
-    x = set()
-    for a in data.itertuples():
-        #print(a.Brand, a.Description, a.Type, a.Sex, a.Volume, a._7)
-        x.add(a.Volume)
-        process_volume_file_2(a.Volume)
-    print(x)
+    data = data.dropna(subset=["Brand", "Description", "Type", "Sex", "Volume", "Net EUR"])
+    print(data)
+    #    perfume_list = [
+    #        Perfume(perfume.Brand, perfume.Description, perfume.Type, perfume.Sex,
+    #                volume_type, volume_set, volume_amount, perfume._7, 2) for perfume in data.itertuples()]
+
+    i = 2
+    for p in data.itertuples():
+        print("\n")
+        print(i)
+        print(process_volume_file_2(p.Volume))
+        i = i + 1
 
 
 def process_file_3(perfume_map, excel_file):
