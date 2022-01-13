@@ -26,4 +26,5 @@ class PerfumeMap:
 
         return map_string
 
-
+    def get_map(self):
+        return self.perfume_map
