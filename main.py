@@ -14,9 +14,13 @@ def make_sex_uniform(sex):
         return "M"
     elif sex == "MAN":
         return "M"
+    elif sex == "MUŠKI":
+        return "M"
     elif sex == "WOMEN":
         return "W"
     elif sex == "WOMAN":
+        return "W"
+    elif sex == "ŽENSKI":
         return "W"
     if sex == "UNISEX":
         return "U"
@@ -153,15 +157,12 @@ def process_unnamed_4_file_5(type):
         return {"volume_set": False}
 
 
-
 def process_unnamed_3_file_5(volume):
-
     volume_part_lists = volume.split()
     volume_tester = 'Tester' in volume_part_lists
     volume_amount = None
 
     if 'ml' in volume_part_lists:
-
         volume_amount = volume_part_lists[volume_part_lists.index('ml') - 1]
 
     volume_metadata = list(
@@ -172,7 +173,6 @@ def process_unnamed_3_file_5(volume):
 
 
 def process_file_5(perfume_map, excel_file):
-
     data = pd.read_excel(excel_file)
 
     data = data.dropna(subset=["Unnamed: 5"])
@@ -197,12 +197,56 @@ def process_file_5(perfume_map, excel_file):
         perfume_map.insert_perfume(p)
 
 
+def process_naziv_file_6(naziv):
+    naziv_part_lists = naziv.split(" / ")
+
+    return {"description": naziv_part_lists[0], "sex": make_sex_uniform(naziv_part_lists[2]),
+            "volume_amount": naziv_part_lists[1]}
+
+
+def process_tip_file_6(tip):
+    volume_set = tip == 'Set'
+    volume_tester = tip == 'Tester'
+
+    return {"volume_set": volume_set, "volume_tester": volume_tester}
+
+
 def process_file_6(perfume_map, excel_file):
-    pass
+    data = pd.read_excel(excel_file)
+
+    # Naziv kreatora == _1 -> Brand
+    # Naziv -> Description, volume_amount, sex
+
+    perfume_list = [
+        Perfume(perfume._1,
+                process_naziv_file_6(perfume.Naziv)["description"],
+                perfume.Tip,
+                process_naziv_file_6(perfume.Naziv)["sex"],
+                process_tip_file_6(perfume.Tip)["volume_tester"],
+                process_tip_file_6(perfume.Tip)["volume_set"],
+                process_naziv_file_6(perfume.Naziv)["volume_amount"],
+                [],
+                perfume.Cena, 6)
+        for perfume in data.itertuples()
+    ]
+    for p in perfume_list:
+        perfume_map.insert_perfume(p)
 
 
 def process_file_7(perfume_map, excel_file):
-    pass
+    data = pd.read_excel(excel_file)
+
+    # BRANDS -> Brand
+    # Naziv -> Description, volume_amount, sex
+
+    perfume_list = [
+        (perfume.BRANDS,
+        perfume._3)
+        for perfume in data.itertuples()
+    ]
+    for p in perfume_list:
+        #perfume_map.insert_perfume(p)
+        print(p)
 
 
 def main():
@@ -212,7 +256,7 @@ def main():
     perfume_map = PerfumeMap()
     for root, dirs, files in os.walk(root_folder):
         for filename in files:
-
+            """
             if filename == "2.xlsx":
                 process_file_2(perfume_map, os.path.join(root, filename))
             elif filename == "3.xlsx":
@@ -221,14 +265,14 @@ def main():
                 process_file_4(perfume_map, os.path.join(root, filename))
             elif filename == "5.xlsx":
                 process_file_5(perfume_map, os.path.join(root, filename))
-            """
-            elif filename == "6.xlsx":
+            elif filename == "6.xls":
                 process_file_6(perfume_map, os.path.join(root, filename))
+
             elif filename == "7.xlsx":
                 process_file_7(perfume_map, os.path.join(root, filename))
             """
-            #if filename == "5.xlsx":
-            #    process_file_5(perfume_map, os.path.join(root, filename))
+            if filename == "7.xlsx":
+                process_file_7(perfume_map, os.path.join(root, filename))
     print(len(perfume_map.get_map()))
     print(perfume_map)
     """
