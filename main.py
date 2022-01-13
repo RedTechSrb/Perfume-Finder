@@ -146,8 +146,55 @@ def process_file_4(perfume_map, excel_file):
         perfume_map.insert_perfume(p)
 
 
+def process_unnamed_4_file_5(type):
+    if type == "SET":
+        return {"volume_set": True}
+    else:
+        return {"volume_set": False}
+
+
+
+def process_unnamed_3_file_5(volume):
+
+    volume_part_lists = volume.split()
+    volume_tester = 'Tester' in volume_part_lists
+    volume_amount = None
+
+    if 'ml' in volume_part_lists:
+
+        volume_amount = volume_part_lists[volume_part_lists.index('ml') - 1]
+
+    volume_metadata = list(
+        filter(lambda v: (v != volume_amount and v != 'ml' and v != 'Tester'), volume_part_lists))
+
+    return {"volume_tester": volume_tester,
+            "volume_amount": str(volume_amount) + "ml", "volume_metadata": volume_metadata}
+
+
 def process_file_5(perfume_map, excel_file):
-    pass
+
+    data = pd.read_excel(excel_file)
+
+    data = data.dropna(subset=["Unnamed: 5"])
+    # Unnamed: 1 -> Brand
+    # Unnamed: 2 -> Description
+    # Unnamed: 4 -> Type
+    # Unnamed: 4 (fetch) -> volume_set
+    # Unnamed: 3 -> volume_amount, volume_tester, volume_metadata
+    # Unnamed: 5 -> Price
+
+    perfume_list = [
+        Perfume(perfume._2, perfume._3, perfume._5,
+                'U',
+                process_unnamed_3_file_5(perfume._4)["volume_tester"],
+                process_unnamed_4_file_5(perfume._3)["volume_set"],
+                process_unnamed_3_file_5(perfume._4)["volume_amount"],
+                process_unnamed_3_file_5(perfume._4)["volume_metadata"],
+                perfume._6, 5)
+        for perfume in data.itertuples()
+    ]
+    for p in perfume_list:
+        perfume_map.insert_perfume(p)
 
 
 def process_file_6(perfume_map, excel_file):
@@ -166,7 +213,6 @@ def main():
     for root, dirs, files in os.walk(root_folder):
         for filename in files:
 
-            """
             if filename == "2.xlsx":
                 process_file_2(perfume_map, os.path.join(root, filename))
             elif filename == "3.xlsx":
@@ -175,13 +221,14 @@ def main():
                 process_file_4(perfume_map, os.path.join(root, filename))
             elif filename == "5.xlsx":
                 process_file_5(perfume_map, os.path.join(root, filename))
+            """
             elif filename == "6.xlsx":
                 process_file_6(perfume_map, os.path.join(root, filename))
             elif filename == "7.xlsx":
                 process_file_7(perfume_map, os.path.join(root, filename))
             """
-            if filename == "5.xlsx":
-                process_file_5(perfume_map, os.path.join(root, filename))
+            #if filename == "5.xlsx":
+            #    process_file_5(perfume_map, os.path.join(root, filename))
     print(len(perfume_map.get_map()))
     print(perfume_map)
     """
