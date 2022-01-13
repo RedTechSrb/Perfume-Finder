@@ -17,9 +17,13 @@ class Perfume:
         return self.brand, self.description, self.perfume_type, self.sex, self.volume_tester, self.volume_set, \
                self.volume_amount
 
+    def get_parent_file(self):
+        return self.parent_file
+
     def get_price(self):
         return self.price
 
     def __str__(self) -> str:
-        return f"Perfume[{self.parent_file}] ({self.brand}, {self.description}, {self.perfume_type}, {self.sex}, \
-                {self.volume_tester}, {self.volume_set}, {self.volume_amount}, {self.volume_metadata}) -> {self.price}"
+        return f"Perfume[{self.parent_file}] ({self.brand}, {self.description}, {self.perfume_type}, {self.sex}," + \
+               f" {self.volume_tester}, {self.volume_set}, {self.volume_amount}, {self.volume_metadata})" + \
+               f" -> {self.price}"
