@@ -21,3 +21,9 @@ def make_sex_uniform(sex):
         return "U"
     else:
         return "U"
+
+
+def nan_to_none(variable):
+    if pd.isna(variable):
+        return None
+    return variable
