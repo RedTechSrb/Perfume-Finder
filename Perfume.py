@@ -2,9 +2,9 @@ class Perfume:
 
     def __init__(self, brand, description, perfume_type, sex, volume_tester, volume_set, volume_amount, volume_metadata,
                  price, parent_file):
-        self.brand = brand
-        self.description = description
-        self.perfume_type = perfume_type
+        self.brand = brand.upper()
+        self.description = description.upper()
+        self.perfume_type = perfume_type.upper()
         self.sex = sex
         self.volume_tester = volume_tester
         self.volume_set = volume_set
@@ -16,6 +16,9 @@ class Perfume:
     def get_description(self):
         return self.brand, self.description, self.perfume_type, self.sex, self.volume_tester, self.volume_set, \
                self.volume_amount
+
+    def get_minimal(self):
+        return self.brand, self.description
 
     def get_parent_file(self):
         return self.parent_file
