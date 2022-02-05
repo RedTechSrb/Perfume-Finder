@@ -7,24 +7,27 @@ class PerfumeMap:
         self.perfume_map = {}
 
     def insert_perfume(self, perfume: Perfume):
-        key = perfume.get_minimal()
+        new_python_key = perfume.get_minimal()
 
-        if key in self.perfume_map.keys():
-            self.perfume_map[key].append((perfume.get_parent_file(), perfume.get_price()))
-        else:
-            self.perfume_map[key] = [(perfume.get_parent_file(), perfume.get_price())]
+        if new_python_key == ('NAN', 'NAN'):
+            return
+
+        for key, value in self.perfume_map.items():
+            if key == new_python_key:
+                self.perfume_map[key].append((perfume.get_parent_file(), perfume.get_price()))
+                return
+
+        self.perfume_map[new_python_key] = [(perfume.get_parent_file(), perfume.get_price())]
 
     def __str__(self) -> str:
 
         map_string = ""
 
         for key, value in self.perfume_map.items():
-            if len(value) >= 2:
-
-                map_string += str(key)
-                map_string += " -> "
-                map_string += str(value)
-                map_string += "\n"
+            map_string += str(key)
+            map_string += " -> "
+            map_string += str(value)
+            map_string += "\n"
 
         return map_string
 
