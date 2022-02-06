@@ -6,11 +6,11 @@ from PerfumeMap import PerfumeMap
 from utility import *
 
 
-def process_volume_file_2(volume):
-    if pd.isna(volume):
+def process_volume_file_2(column_volume_data):
+    if pd.isna(column_volume_data):
         return {"volume_set": None, "volume_tester": None, "volume_amount": None, "volume_metadata": None}
 
-    volume_part_lists = volume.split()
+    volume_part_lists = column_volume_data.split()
     volume_set = 'SET' in volume_part_lists
     volume_tester = 'Tester' in volume_part_lists
 

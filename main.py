@@ -9,6 +9,7 @@ from utility import make_sex_uniform
 from utility import nan_to_none
 
 from process_file_2 import *
+from process_file_5 import *
 
 
 def process_kind_file_3(kind):
@@ -85,53 +86,6 @@ def process_file_4(perfume_map, excel_file):
                 nan_to_none(perfume.Size),
                 process_type_file_4(perfume.Type)["volume_metadata"],
                 perfume._7, 4)
-        for perfume in data.itertuples()
-    ]
-    for p in perfume_list:
-        perfume_map.insert_perfume(p)
-
-
-def process_unnamed_4_file_5(type):
-    if type == "SET":
-        return {"volume_set": True}
-    else:
-        return {"volume_set": False}
-
-
-def process_unnamed_3_file_5(volume):
-    volume_part_lists = volume.split()
-    volume_tester = 'Tester' in volume_part_lists
-    volume_amount = None
-
-    if 'ml' in volume_part_lists:
-        volume_amount = volume_part_lists[volume_part_lists.index('ml') - 1]
-
-    volume_metadata = list(
-        filter(lambda v: (v != volume_amount and v != 'ml' and v != 'Tester'), volume_part_lists))
-
-    return {"volume_tester": volume_tester,
-            "volume_amount": str(volume_amount) + "ml", "volume_metadata": volume_metadata}
-
-
-def process_file_5(perfume_map, excel_file):
-    data = pd.read_excel(excel_file)
-
-    data = data.dropna(subset=["Unnamed: 5"])
-    # Unnamed: 1 -> Brand
-    # Unnamed: 2 -> Description
-    # Unnamed: 4 -> Type
-    # Unnamed: 4 (fetch) -> volume_set
-    # Unnamed: 3 -> volume_amount, volume_tester, volume_metadata
-    # Unnamed: 5 -> Price
-
-    perfume_list = [
-        Perfume(perfume._2, perfume._3, perfume._5,
-                'U',
-                process_unnamed_3_file_5(perfume._4)["volume_tester"],
-                process_unnamed_4_file_5(perfume._3)["volume_set"],
-                process_unnamed_3_file_5(perfume._4)["volume_amount"],
-                process_unnamed_3_file_5(perfume._4)["volume_metadata"],
-                perfume._6, 5)
         for perfume in data.itertuples()
     ]
     for p in perfume_list:
@@ -228,20 +182,21 @@ def main():
 #                process_file_3(perfume_map, os.path.join(root, filename))
 #            elif filename == "4.xlsx":
 #                process_file_4(perfume_map, os.path.join(root, filename))
-#            if filename == "5.xlsx":
-#                process_file_5(perfume_map, os.path.join(root, filename))
+            if filename == "5.xlsx":
+                process_file_5(perfume_map1, os.path.join(root, filename))
 #            elif filename == "6.xls":
 #                process_file_6(perfume_map, os.path.join(root, filename))
 #            elif filename == "7.xlsx":
 #                process_file_7(perfume_map, os.path.join(root, filename))
 
 
-    #for key, value in perfume_map.get_map().items():
-    #    print(key)
-    #print(len(perfume_map.get_map()))
-    print(perfume_map)
+    #print(perfume_map)
 
     #print(perfume_map.get_map()[('CHRISTIAN DIOR', 'DIOR HOMME')])
+
+    print(perfume_map1)
+
+    print(perfume_map1.get_map()[('CHRISTIAN DIOR', 'DIOR HOMME')])
 
     #print()
 
