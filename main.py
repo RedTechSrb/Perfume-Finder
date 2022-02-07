@@ -183,7 +183,7 @@ def main():
 #            elif filename == "4.xlsx":
 #                process_file_4(perfume_map, os.path.join(root, filename))
             if filename == "5.xlsx":
-                process_file_5(perfume_map1, os.path.join(root, filename))
+                process_file_5(perfume_map, os.path.join(root, filename))
 #            elif filename == "6.xls":
 #                process_file_6(perfume_map, os.path.join(root, filename))
 #            elif filename == "7.xlsx":
@@ -192,13 +192,14 @@ def main():
 
     #print(perfume_map)
 
-    #print(perfume_map.get_map()[('CHRISTIAN DIOR', 'DIOR HOMME')])
+    for p in perfume_map.get_map()[('CHRISTIAN DIOR', 'DIOR HOMME INTENSE')]:
+        print(p)
 
-    print(perfume_map1)
-
-    print(perfume_map1.get_map()[('CHRISTIAN DIOR', 'DIOR HOMME')])
-
+#    print(perfume_map1)
     #print()
+    #for p in perfume_map1.get_map()[('CHRISTIAN DIOR', 'DIOR HOMME INTENSE')]:
+    #    print(p)
+
 
     """
     PROBLEM None ne poredi sa EDDT kao true nego kao false

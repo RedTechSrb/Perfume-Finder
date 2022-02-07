@@ -14,10 +14,10 @@ class PerfumeMap:
 
         for key, value in self.perfume_map.items():
             if key == new_python_key:
-                self.perfume_map[key].append((perfume.get_parent_file(), perfume.get_price()))
+                self.perfume_map[key].append(perfume)
                 return
 
-        self.perfume_map[new_python_key] = [(perfume.get_parent_file(), perfume.get_price())]
+        self.perfume_map[new_python_key] = [perfume]
 
     def __str__(self) -> str:
 
