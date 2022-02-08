@@ -10,8 +10,6 @@ from process_file_7 import *
 
 def main():
     root_folder = "data"
-    perfume_map1 = PerfumeMap()
-    perfume_map2 = PerfumeMap()
     perfume_map = PerfumeMap()
     for root, dirs, files in os.walk(root_folder):
         for filename in files:
@@ -48,6 +46,12 @@ def main():
                                     'DIOR HOMME EDT')]:
         print(p)
     print()
+
+    print(perfume_map.get_maximal_price(('CHRISTIAN DIOR', 'DIOR HOMME EDT')))
+    print(perfume_map.get_maximal_price(('CD', 'DIOR HOMME')))
+
+    for key, value in perfume_map.get_map().items():
+        print(key, perfume_map.get_maximal_price(key))
 
 
 if __name__ == "__main__":

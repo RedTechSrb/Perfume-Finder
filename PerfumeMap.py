@@ -33,3 +33,6 @@ class PerfumeMap:
 
     def get_map(self):
         return self.perfume_map
+
+    def get_maximal_price(self, key):
+        return min(list(map(lambda p: p.get_price(), self.perfume_map[key])))
