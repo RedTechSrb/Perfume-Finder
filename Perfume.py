@@ -2,8 +2,8 @@ class Perfume:
 
     def __init__(self, brand, description, perfume_type, sex, volume_tester, volume_set, volume_amount, volume_metadata,
                  price, parent_file):
-        self.brand = brand.upper()
-        self.description = description.upper()
+        self.brand = " ".join(brand.upper().split())
+        self.description = " ".join(description.upper().split())
         self.perfume_type = perfume_type.upper()
         self.sex = sex
         self.volume_tester = volume_tester

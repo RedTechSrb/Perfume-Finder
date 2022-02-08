@@ -27,3 +27,9 @@ def nan_to_none(variable):
     if pd.isna(variable):
         return None
     return variable
+
+
+def make_ml_lowercase(volume):
+    if pd.isna(volume):
+        return None
+    return volume[0:-2] + volume[-2:].lower()
