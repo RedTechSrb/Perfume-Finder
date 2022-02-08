@@ -46,19 +46,6 @@ def process_file_3(perfume_map: PerfumeMap, excel_file):
     # Description -> Description, volume_amount
     # _6 -> Price
 
-    # for perfume in data.itertuples():
-    #
-    #     print(perfume._4, " #",
-    #           process_description_file_3(perfume.Description)["Description"], "# ",
-    #           None, " # ",
-    #         make_sex_uniform(perfume.Sex), " # ",
-    #             process_kind_file_3(perfume.Kind)["volume_tester"], " # ",
-    #             process_kind_file_3(perfume.Kind)["volume_set"], " # ",
-    #           process_description_file_3(perfume.Description)["volume_amount"], " # ",
-    #           process_kind_file_3(perfume.Kind)["volume_metadata"], " # ",
-    #             perfume._6, " # ",
-    #           3)
-
     perfume_list = [
         Perfume(str(perfume._4),
                 str(process_description_file_3(perfume.Description)["Description"]),

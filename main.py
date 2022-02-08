@@ -137,7 +137,7 @@ def main():
             if filename == "2.xlsx":
                 process_file_2(perfume_map, os.path.join(root, filename))
             elif filename == "3.xlsx":
-                process_file_3(perfume_map2, os.path.join(root, filename))
+                process_file_3(perfume_map, os.path.join(root, filename))
 #            elif filename == "4.xlsx":
 #                process_file_4(perfume_map, os.path.join(root, filename))
             if filename == "5.xlsx":
@@ -148,12 +148,11 @@ def main():
 #                process_file_7(perfume_map, os.path.join(root, filename))
 
 
-#    for p in perfume_map.get_map()[('CHRISTIAN DIOR', 'DIOR HOMME INTENSE')]:
-#        print(p)
 
-#    print(perfume_map2)
-    #print()
-    for p in perfume_map2.get_map()[('CHRISTIAN DIOR', 'DIOR HOMME EDT')]:
+    for p in perfume_map.get_map()[('CHRISTIAN DIOR', 'DIOR HOMME INTENSE')]:
+        print(p)
+
+    for p in perfume_map.get_map()[('CHRISTIAN DIOR', 'DIOR HOMME EDT')]:
         print(p)
 
 
