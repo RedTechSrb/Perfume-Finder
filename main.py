@@ -10,44 +10,11 @@ from utility import nan_to_none
 
 from process_file_2 import *
 from process_file_3 import *
+from process_file_4 import *
 from process_file_5 import *
 
 
 
-
-def process_type_file_4(perfumeType):
-    if pd.isna(perfumeType):
-        return {"volume_set": False, "volume_tester": False, "volume_metadata": []}
-
-    type_part_lists = perfumeType.split()
-    volume_set = 'SET' in type_part_lists
-    volume_tester = 'Tester' in type_part_lists
-
-    volume_metadata = list(
-        filter(lambda v: (v != 'SET' and v != 'Tester'), type_part_lists))
-
-    return {"volume_set": volume_set, "volume_tester": volume_tester, "volume_metadata": volume_metadata}
-
-
-def process_file_4(perfume_map, excel_file):
-    data = pd.read_excel(excel_file, skiprows=[0, 1])
-
-    # data = data.dropna(subset=["Brand", "Annie ", "Type", "Sex", "Size", "Unnamed: 6"])
-    # print(len(data))
-    # Unnamed: 6 -> Price
-
-    perfume_list = [
-        Perfume(perfume.Brand, perfume._3, None,
-                make_sex_uniform(perfume.Sex),
-                process_type_file_4(perfume.Type)["volume_tester"],
-                process_type_file_4(perfume.Type)["volume_set"],
-                nan_to_none(perfume.Size),
-                process_type_file_4(perfume.Type)["volume_metadata"],
-                perfume._7, 4)
-        for perfume in data.itertuples()
-    ]
-    for p in perfume_list:
-        perfume_map.insert_perfume(p)
 
 
 def process_naziv_file_6(naziv):
@@ -138,9 +105,9 @@ def main():
                 process_file_2(perfume_map, os.path.join(root, filename))
             elif filename == "3.xlsx":
                 process_file_3(perfume_map, os.path.join(root, filename))
-#            elif filename == "4.xlsx":
-#                process_file_4(perfume_map, os.path.join(root, filename))
-            if filename == "5.xlsx":
+            elif filename == "4.xlsx":
+                process_file_4(perfume_map, os.path.join(root, filename))
+            elif filename == "5.xlsx":
                 process_file_5(perfume_map, os.path.join(root, filename))
 #            elif filename == "6.xls":
 #                process_file_6(perfume_map, os.path.join(root, filename))
@@ -149,13 +116,20 @@ def main():
 
 
 
-    for p in perfume_map.get_map()[('CHRISTIAN DIOR', 'DIOR HOMME INTENSE')]:
+    for p in perfume_map.get_map()[('CHRISTIAN DIOR',
+                                    'DIOR HOMME')]:
         print(p)
+    print()
 
-    for p in perfume_map.get_map()[('CHRISTIAN DIOR', 'DIOR HOMME EDT')]:
+    for p in perfume_map.get_map()[('CHRISTIAN DIOR',
+                                    'DIOR HOMME INTENSE')]:
         print(p)
+    print()
 
-
+    for p in perfume_map.get_map()[('CHRISTIAN DIOR',
+                                     'DIOR HOMME EDT')]:
+        print(p)
+    print()
     """
     PROBLEM None ne poredi sa EDDT kao true nego kao false
     print(len(perfume_map1.get_map()))
