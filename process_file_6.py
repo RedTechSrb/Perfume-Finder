@@ -1,5 +1,3 @@
-from re import match
-
 from Perfume import Perfume
 from PerfumeMap import PerfumeMap
 
