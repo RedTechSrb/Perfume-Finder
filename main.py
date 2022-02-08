@@ -1,11 +1,4 @@
 import os
-import pandas as pd
-from re import match
-
-from Perfume import Perfume
-from PerfumeMap import PerfumeMap
-
-from utility import make_sex_uniform
 
 from process_file_2 import *
 from process_file_3 import *
@@ -13,6 +6,7 @@ from process_file_4 import *
 from process_file_5 import *
 from process_file_6 import *
 from process_file_7 import *
+
 
 def main():
     root_folder = "data"
@@ -35,7 +29,6 @@ def main():
             elif filename == "7.xlsx":
                 process_file_7(perfume_map, os.path.join(root, filename))
 
-
     for p in perfume_map.get_map()[('CD',
                                     'DIOR HOMME')]:
         print(p)
@@ -52,7 +45,7 @@ def main():
     print()
 
     for p in perfume_map.get_map()[('CHRISTIAN DIOR',
-                                     'DIOR HOMME EDT')]:
+                                    'DIOR HOMME EDT')]:
         print(p)
     print()
 
