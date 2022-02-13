@@ -18,6 +18,7 @@ class Perfume:
                self.volume_amount
 
     def get_minimal(self):
+        # TODO: add volume
         return self.brand, self.description
 
     def get_parent_file(self):

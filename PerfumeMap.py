@@ -9,6 +9,7 @@ class PerfumeMap:
     def insert_perfume(self, perfume: Perfume):
         new_python_key = perfume.get_minimal()
 
+        # TODO: add volume
         if new_python_key == ('NAN', 'NAN'):
             return
 
