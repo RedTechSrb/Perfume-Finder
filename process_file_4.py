@@ -18,6 +18,9 @@ def process_type_file_4(column_Type_data):
 
 
 def process_file_4(perfume_map: PerfumeMap, excel_file):
+
+    print("File 4.xlsx processing ... ")
+
     data = pd.read_excel(excel_file, skiprows=[0, 1])
 
     # file_4 specificity
@@ -39,3 +42,5 @@ def process_file_4(perfume_map: PerfumeMap, excel_file):
     ]
     for p in perfume_list:
         perfume_map.insert_perfume(p)
+
+    print("... finished")

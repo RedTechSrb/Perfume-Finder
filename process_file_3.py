@@ -38,6 +38,9 @@ def process_description_file_3(description_data):
 
 
 def process_file_3(perfume_map: PerfumeMap, excel_file):
+
+    print("File 3.xlsx processing ... ")
+
     data = pd.read_excel(excel_file, skiprows=[0])
 
     # file_3 specificity
@@ -61,3 +64,5 @@ def process_file_3(perfume_map: PerfumeMap, excel_file):
     ]
     for p in perfume_list:
         perfume_map.insert_perfume(p)
+
+    print("... finished")

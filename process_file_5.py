@@ -45,6 +45,9 @@ def process_unnamed_5_file_5(column_5_data):
 
 
 def process_file_5(perfume_map: PerfumeMap, excel_file):
+
+    print("File 5.xlsx processing ... ")
+
     data = pd.read_excel(excel_file)
 
     # file_5 specificity
@@ -70,3 +73,5 @@ def process_file_5(perfume_map: PerfumeMap, excel_file):
 
     for p in perfume_list:
         perfume_map.insert_perfume(p)
+
+    print("... finished")

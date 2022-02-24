@@ -28,6 +28,9 @@ def process_volume_file_2(column_volume_data):
 
 
 def process_file_2(perfume_map: PerfumeMap, excel_file):
+
+    print("File 2.xlsx processing ... ")
+
     data = pd.read_excel(excel_file)
 
     # file_2 specificity
@@ -50,3 +53,5 @@ def process_file_2(perfume_map: PerfumeMap, excel_file):
 
     for p in perfume_list:
         perfume_map.insert_perfume(p)
+
+    print("... finished")

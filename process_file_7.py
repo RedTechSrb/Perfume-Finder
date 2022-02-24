@@ -17,6 +17,9 @@ def process_group_file_7(column_group_data):
 
 
 def process_file_7(perfume_map: PerfumeMap, excel_file):
+
+    print("File 7.xlsx processing ... ")
+
     data = pd.read_excel(excel_file)
 
     # BRANDS -> Brand
@@ -42,3 +45,5 @@ def process_file_7(perfume_map: PerfumeMap, excel_file):
 
     for p in perfume_list:
         perfume_map.insert_perfume(p)
+
+    print("... finished")

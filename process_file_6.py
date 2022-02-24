@@ -26,6 +26,9 @@ def process_tip_file_6(column_Tip_data):
 
 
 def process_file_6(perfume_map: PerfumeMap, excel_file):
+
+    print("File 6.xlsx processing ... ")
+
     data = pd.read_excel(excel_file)
 
     # (Naziv kreatora)_1 -> Brand
@@ -60,3 +63,5 @@ def process_file_6(perfume_map: PerfumeMap, excel_file):
     ]
     for p in perfume_list:
         perfume_map.insert_perfume(p)
+
+    print("... finished")
