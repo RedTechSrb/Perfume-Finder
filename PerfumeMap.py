@@ -10,7 +10,7 @@ class PerfumeMap:
         new_python_key = perfume.get_minimal()
 
         # TODO: add volume
-        if new_python_key == ('NAN', 'NAN'):
+        if new_python_key == ('NAN', 'NAN', 'NAN'):
             return
 
         for key, value in self.perfume_map.items():
@@ -35,5 +35,5 @@ class PerfumeMap:
     def get_map(self):
         return self.perfume_map
 
-    def get_maximal_price(self, key):
+    def get_minimal_price(self, key):
         return min(list(map(lambda p: p.get_price(), self.perfume_map[key])))

@@ -27,31 +27,40 @@ def main():
             elif filename == "7.xlsx":
                 process_file_7(perfume_map, os.path.join(root, filename))
 
-    for p in perfume_map.get_map()[('CD',
-                                    'DIOR HOMME')]:
+    # for p in perfume_map.get_map()[('CD',
+    #                                 'DIOR HOMME')]:
+    #     print(p)
+    # print()
+
+    for p in perfume_map.get_map()[('CHRISTIAN DIOR',
+                                    'DIOR HOMME',
+                                    None)]:
         print(p)
     print()
 
     for p in perfume_map.get_map()[('CHRISTIAN DIOR',
-                                    'DIOR HOMME')]:
+                                    'DIOR HOMME',
+                                    '100ml')]:
         print(p)
     print()
 
-    for p in perfume_map.get_map()[('CHRISTIAN DIOR',
-                                    'DIOR HOMME INTENSE')]:
-        print(p)
-    print()
+    print(perfume_map.get_minimal_price(('CHRISTIAN DIOR', 'DIOR HOMME', '100ml')))
 
-    for p in perfume_map.get_map()[('CHRISTIAN DIOR',
-                                    'DIOR HOMME EDT')]:
-        print(p)
-    print()
-
-    print(perfume_map.get_maximal_price(('CHRISTIAN DIOR', 'DIOR HOMME EDT')))
-    print(perfume_map.get_maximal_price(('CD', 'DIOR HOMME')))
+    # for p in perfume_map.get_map()[('CHRISTIAN DIOR',
+    #                                 'DIOR HOMME INTENSE')]:
+    #     print(p)
+    # print()
+    #
+    # for p in perfume_map.get_map()[('CHRISTIAN DIOR',
+    #                                 'DIOR HOMME EDT')]:
+    #     print(p)
+    # print()
+    #
+    # print(perfume_map.get_maximal_price(('CHRISTIAN DIOR', 'DIOR HOMME EDT')))
+    # print(perfume_map.get_maximal_price(('CD', 'DIOR HOMME')))
 
     for key, value in perfume_map.get_map().items():
-        print(key, perfume_map.get_maximal_price(key))
+        print(key, perfume_map.get_minimal_price(key))
 
 
 if __name__ == "__main__":
