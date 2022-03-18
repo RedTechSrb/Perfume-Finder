@@ -35,4 +35,4 @@ class PerfumeMap:
         return self.perfume_map
 
     def get_minimal_price_and_parent_file(self, key):
-        return min(list(map(lambda p: (p.get_parent_file(), p.get_price()), self.perfume_map[key])))
+        return min(list(map(lambda p: (p.get_price(), p.get_parent_file()), self.perfume_map[key])))
