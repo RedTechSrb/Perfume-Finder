@@ -1,11 +1,56 @@
 import os
 
+import pandas as pd
+
 from process_file_2 import *
 from process_file_3 import *
 from process_file_4 import *
 from process_file_5 import *
 from process_file_6 import *
 from process_file_7 import *
+
+
+def write_combined_perfumes_to_xlsx(perfume_map: PerfumeMap):
+    output_data_folder = "output_data/"
+    xlsx_with_prices = "perfumes_with_prices.xlsx"
+    xlsx_without_prices = "perfumes_without_prices.xlsx"
+
+    output_perfume_list_with_prices = {'Brand': [],
+                                       'Description': [],
+                                       'Volume': [],
+                                       'File': [],
+                                       'Price': []
+                                       }
+
+    output_perfume_list_without_prices = {'Brand': [],
+                                          'Description': [],
+                                          'Volume': [],
+                                          'Price': []
+                                          }
+
+    for key, value in perfume_map.get_map().items():
+        print(key[0], key[1], key[2], perfume_map.get_minimal_price_and_parent_file(key)[0], perfume_map.get_minimal_price_and_parent_file(key)[1])
+
+        output_perfume_list_with_prices['Brand'].append(key[0])
+        output_perfume_list_with_prices['Description'].append(key[1])
+        output_perfume_list_with_prices['Volume'].append(key[2])
+        output_perfume_list_with_prices['File'].append(perfume_map.get_minimal_price_and_parent_file(key)[0])
+        output_perfume_list_with_prices['Price'].append(perfume_map.get_minimal_price_and_parent_file(key)[1])
+
+        output_perfume_list_without_prices['Brand'].append(key[0])
+        output_perfume_list_without_prices['Description'].append(key[1])
+        output_perfume_list_without_prices['Volume'].append(key[2])
+        output_perfume_list_without_prices['Price'].append('')
+
+    df = pd.DataFrame(output_perfume_list_with_prices)
+    writer = pd.ExcelWriter(output_data_folder + xlsx_with_prices, engine='xlsxwriter')
+    df.to_excel(writer, sheet_name='Sheet1', index=False)
+    writer.save()
+
+    df = pd.DataFrame(output_perfume_list_without_prices)
+    writer = pd.ExcelWriter(output_data_folder + xlsx_without_prices, engine='xlsxwriter')
+    df.to_excel(writer, sheet_name='Sheet1', index=False)
+    writer.save()
 
 
 def main():
@@ -44,7 +89,7 @@ def main():
         print(p)
     print()
 
-    print(perfume_map.get_minimal_price(('CHRISTIAN DIOR', 'DIOR HOMME', '100ml')))
+    print(perfume_map.get_minimal_price_and_parent_file(('CHRISTIAN DIOR', 'DIOR HOMME', '100ml')))
 
     # for p in perfume_map.get_map()[('CHRISTIAN DIOR',
     #                                 'DIOR HOMME INTENSE')]:
@@ -59,8 +104,10 @@ def main():
     # print(perfume_map.get_maximal_price(('CHRISTIAN DIOR', 'DIOR HOMME EDT')))
     # print(perfume_map.get_maximal_price(('CD', 'DIOR HOMME')))
 
-    for key, value in perfume_map.get_map().items():
-        print(key, perfume_map.get_minimal_price(key))
+    # for key, value in perfume_map.get_map().items():
+    #     print(key, perfume_map.get_minimal_price_and_parent_file(key))
+
+    write_combined_perfumes_to_xlsx(perfume_map)
 
 
 if __name__ == "__main__":

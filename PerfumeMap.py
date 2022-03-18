@@ -9,7 +9,6 @@ class PerfumeMap:
     def insert_perfume(self, perfume: Perfume):
         new_python_key = perfume.get_minimal()
 
-        # TODO: add volume
         if new_python_key == ('NAN', 'NAN', 'NAN'):
             return
 
@@ -35,5 +34,5 @@ class PerfumeMap:
     def get_map(self):
         return self.perfume_map
 
-    def get_minimal_price(self, key):
-        return min(list(map(lambda p: p.get_price(), self.perfume_map[key])))
+    def get_minimal_price_and_parent_file(self, key):
+        return min(list(map(lambda p: (p.get_parent_file(), p.get_price()), self.perfume_map[key])))
