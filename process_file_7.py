@@ -38,7 +38,7 @@ def process_file_7(perfume_map: PerfumeMap, excel_file):
                 process_group_file_7(perfume.GROUP)["volume_set"],
                 make_ml_lowercase(perfume.SIZE),
                 process_group_file_7(perfume.GROUP)["volume_metadata"],
-                perfume.PIRCE,
+                perfume.PRICE,
                 7)
         for perfume in data.itertuples()
     ]
