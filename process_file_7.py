@@ -33,7 +33,7 @@ def process_file_7(perfume_map: PerfumeMap, excel_file):
         Perfume(str(perfume.BRANDS),
                 str(perfume._3),
                 str(perfume.TYPE),
-                "N",
+                make_sex_uniform("N"),
                 process_group_file_7(perfume.GROUP)["volume_tester"],
                 process_group_file_7(perfume.GROUP)["volume_set"],
                 make_ml_lowercase(perfume.SIZE),

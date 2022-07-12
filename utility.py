@@ -9,9 +9,13 @@ def make_sex_uniform(sex):
         return "M"
     elif sex == "MAN":
         return "M"
+    elif sex == "M":
+        return "M"
     elif sex == "MUŠKI":
         return "M"
     elif sex == "WOMEN":
+        return "W"
+    elif sex == "W":
         return "W"
     elif sex == "WOMAN":
         return "W"
@@ -22,7 +26,7 @@ def make_sex_uniform(sex):
     elif sex == "U":
         return "U"
     else:
-        return "N"
+        return "NEPOZNATO"
 
 
 def nan_to_none(variable):

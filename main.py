@@ -37,8 +37,8 @@ def write_combined_perfumes_to_xlsx(perfume_map: PerfumeMap):
         output_perfume_list_with_prices['Description'].append(key[1])
         output_perfume_list_with_prices['Volume'].append(key[2])
         output_perfume_list_with_prices['Sex'].append(key[3])
-        output_perfume_list_with_prices['File'].append(perfume_map.get_minimal_price_and_parent_file(key)[0])
-        output_perfume_list_with_prices['Price'].append(perfume_map.get_minimal_price_and_parent_file(key)[1])
+        output_perfume_list_with_prices['Price'].append(perfume_map.get_minimal_price_and_parent_file(key)[0])
+        output_perfume_list_with_prices['File'].append(perfume_map.get_minimal_price_and_parent_file(key)[1])
 
         output_perfume_list_without_prices['Brand'].append(key[0])
         output_perfume_list_without_prices['Description'].append(key[1])
@@ -47,11 +47,14 @@ def write_combined_perfumes_to_xlsx(perfume_map: PerfumeMap):
         output_perfume_list_without_prices['Price'].append('')
 
     df = pd.DataFrame(output_perfume_list_with_prices)
+    df = df.sort_values(['Brand'], ascending=[True])
+
     writer = pd.ExcelWriter(output_data_folder + xlsx_with_prices, engine='xlsxwriter')
     df.to_excel(writer, sheet_name='Sheet1', index=False)
     writer.save()
 
     df = pd.DataFrame(output_perfume_list_without_prices)
+    df = df.sort_values(['Brand'], ascending=[True])
     writer = pd.ExcelWriter(output_data_folder + xlsx_without_prices, engine='xlsxwriter')
     df.to_excel(writer, sheet_name='Sheet1', index=False)
     writer.save()
