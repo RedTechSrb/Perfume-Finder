@@ -31,6 +31,20 @@ def process_unnamed_4_file_5(column_4_data):
                 "volume_metadata": volume_metadata}
 
 
+def process_unnamed_3_file_5(column_3_data):
+    if pd.isna(column_3_data):
+        return {"sex": None}
+
+    if column_3_data.find('Women & Men') != -1:
+        return {"sex": "U"}
+    elif column_3_data.find('Man') != -1:
+        return {"sex": "M"}
+    elif column_3_data.find('Woman') != -1:
+        return {"sex": "W"}
+
+    return {"sex": "N"}
+
+
 def process_unnamed_5_file_5(column_5_data):
     if pd.isna(column_5_data):
         return {"volume_set": None, "Type": None}
@@ -52,7 +66,7 @@ def process_file_5(perfume_map: PerfumeMap, excel_file):
 
     # file_5 specificity
     # _2 -> Brand
-    # _3 -> Description
+    # _3 -> Description, sex
     # _4 -> volume_tester, volume_amount, volume_metadata
     # _5 -> Type, volume_set
     # _6 -> Price
@@ -61,9 +75,9 @@ def process_file_5(perfume_map: PerfumeMap, excel_file):
         Perfume(str(perfume._2),
                 str(perfume._3),
                 str(process_unnamed_5_file_5(perfume._5)["Type"]),
-                'U',
+                process_unnamed_3_file_5(perfume._3)["sex"],
                 process_unnamed_4_file_5(perfume._4)["volume_tester"],
-                process_unnamed_5_file_5(perfume._3)["volume_set"],
+                process_unnamed_5_file_5(perfume._5)["volume_set"],
                 process_unnamed_4_file_5(perfume._4)["volume_amount"],
                 process_unnamed_4_file_5(perfume._4)["volume_metadata"],
                 perfume._6,

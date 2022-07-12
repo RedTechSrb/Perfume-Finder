@@ -19,8 +19,10 @@ def make_sex_uniform(sex):
         return "W"
     elif sex == "UNISEX":
         return "U"
-    else:
+    elif sex == "U":
         return "U"
+    else:
+        return "N"
 
 
 def nan_to_none(variable):
