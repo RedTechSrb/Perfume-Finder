@@ -3,7 +3,6 @@ from PerfumeMap import PerfumeMap
 
 from utility import *
 
-
 def process_type_file_4(column_Type_data):
     if pd.isna(column_Type_data):
         return {"volume_set": None, "volume_tester": None, "volume_metadata": None}
@@ -24,22 +23,22 @@ def process_file_4(perfume_map: PerfumeMap, excel_file):
     data = pd.read_excel(excel_file, skiprows=[0, 1])
 
     # file_4 specificity
-    # (Annie )_3 -> Description
-    # _7 -> Price
+    # _9 -> Price
 
     perfume_list = [
         Perfume(str(perfume.Brand),
-                str(perfume._3),
+                str(perfume.Description),
                 str(None),
                 make_sex_uniform(perfume.Sex),
-                process_type_file_4(perfume.Type)["volume_tester"],
-                process_type_file_4(perfume.Type)["volume_set"],
+                process_type_file_4(str(perfume.Type))["volume_tester"],
+                process_type_file_4(str(perfume.Type))["volume_set"],
                 nan_to_none(perfume.Size),
-                process_type_file_4(perfume.Type)["volume_metadata"],
-                perfume._7,
+                process_type_file_4(str(perfume.Type))["volume_metadata"],
+                perfume._9,
                 4)
         for perfume in data.itertuples()
     ]
+
     for p in perfume_list:
         perfume_map.insert_perfume(p)
 
