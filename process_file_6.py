@@ -36,18 +36,6 @@ def process_file_6(perfume_map: PerfumeMap, excel_file):
     # Tip -> volume_set, volume_tester, volume_metadata
     # Cena -> Prince
 
-    # for perfume in data.itertuples():
-    #     print(str(perfume._1), " % ",
-    #           str(process_naziv_file_6(perfume.Naziv)["description"]), " % ",
-    #           str(None), " % ",
-    #           make_sex_uniform(process_naziv_file_6(perfume.Naziv)["sex"]), " % ",
-    #           process_tip_file_6(perfume.Tip)["volume_tester"], " % ",
-    #           process_tip_file_6(perfume.Tip)["volume_set"], " % ",
-    #           process_naziv_file_6(perfume.Naziv)["volume_amount"], " % ",
-    #           process_tip_file_6(perfume.Tip)["volume_metadata"], " % ",
-    #           perfume.Cena, " % ",
-    #           6)
-
     perfume_list = [
         Perfume(str(perfume._1),
                 str(process_naziv_file_6(perfume.Naziv)["description"]),
