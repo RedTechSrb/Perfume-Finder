@@ -8,7 +8,7 @@ from utility import *
 
 def process_volume_file_2(column_volume_data):
     if pd.isna(column_volume_data):
-        return {"volume_set": None, "volume_tester": None, "volume_amount": None, "volume_metadata": None}
+        return {"volume_set": 'NAN', "volume_tester": 'NAN', "volume_amount": 'NAN', "volume_metadata": 'NAN'}
 
     volume_part_lists = column_volume_data.split()
     volume_set = 'SET' in volume_part_lists
@@ -18,7 +18,7 @@ def process_volume_file_2(column_volume_data):
     if len(volume_amount) == 1:
         volume_amount = volume_amount[0]
     else:
-        volume_amount = None  # Check this
+        volume_amount = 'NAN'
 
     volume_metadata = list(
         filter(lambda v: (not match('^\d+ml$', v) and v != 'SET' and v != 'Tester'), volume_part_lists))

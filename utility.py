@@ -3,7 +3,7 @@ import pandas as pd
 
 def make_sex_uniform(sex):
     if pd.isna(sex):
-        return None
+        return 'NAN'
     sex = sex.upper()
     if sex == "MEN":
         return "M"
@@ -31,11 +31,11 @@ def make_sex_uniform(sex):
 
 def nan_to_none(variable):
     if pd.isna(variable):
-        return None
+        return 'NAN'
     return variable
 
 
 def make_ml_lowercase(volume):
     if pd.isna(volume):
-        return None
+        return 'NAN'
     return volume[0:-2] + volume[-2:].lower()

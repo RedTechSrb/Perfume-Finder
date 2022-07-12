@@ -6,7 +6,7 @@ from utility import *
 
 def process_naziv_file_6(column_Naziv_data):
     if pd.isna(column_Naziv_data):
-        return {"description": None, "sex": None, "volume_amount": None}
+        return {"description": 'NAN', "sex": 'NAN', "volume_amount": 'NAN'}
 
     naziv_part_lists = column_Naziv_data.split(" / ")
 
@@ -51,7 +51,7 @@ def process_file_6(perfume_map: PerfumeMap, excel_file):
     perfume_list = [
         Perfume(str(perfume._1),
                 str(process_naziv_file_6(perfume.Naziv)["description"]),
-                str(None),
+                str('NAN'),
                 make_sex_uniform(process_naziv_file_6(perfume.Naziv)["sex"]),
                 process_tip_file_6(perfume.Tip)["volume_tester"],
                 process_tip_file_6(perfume.Tip)["volume_set"],

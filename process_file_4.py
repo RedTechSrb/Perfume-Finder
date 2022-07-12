@@ -5,7 +5,7 @@ from utility import *
 
 def process_type_file_4(column_Type_data):
     if pd.isna(column_Type_data):
-        return {"volume_set": None, "volume_tester": None, "volume_metadata": None}
+        return {"volume_set": 'NAN', "volume_tester": 'NAN', "volume_metadata": 'NAN'}
 
     type_part_lists = column_Type_data.split()
     volume_set = 'SET' in type_part_lists

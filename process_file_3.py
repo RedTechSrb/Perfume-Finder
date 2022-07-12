@@ -8,7 +8,7 @@ from utility import *
 
 def process_kind_file_3(kind_data):
     if pd.isna(kind_data):
-        return {"volume_set": None, "volume_tester": None, "volume_metadata": None}
+        return {"volume_set": 'NAN', "volume_tester": 'NAN', "volume_metadata": 'NAN'}
 
     kind_part_lists = kind_data.split()
     volume_set = 'SET' in kind_part_lists
@@ -21,7 +21,7 @@ def process_kind_file_3(kind_data):
 
 def process_description_file_3(description_data):
     if pd.isna(description_data):
-        return {"volume_amount": None, "Description": None}
+        return {"volume_amount": 'NAN', "Description": 'NAN'}
 
     description_part_lists = description_data.split()
 
@@ -31,7 +31,7 @@ def process_description_file_3(description_data):
         volume_amount = volume_amount[0]
         description = ' '.join(list(filter(lambda v: (v != volume_amount), description_part_lists)))
     else:
-        volume_amount = None  # Check this
+        volume_amount = 'NAN'  # Check this
         description = description_data
 
     return {"volume_amount": volume_amount, "Description": description}
@@ -52,7 +52,7 @@ def process_file_3(perfume_map: PerfumeMap, excel_file):
     perfume_list = [
         Perfume(str(perfume._4),
                 str(process_description_file_3(perfume.Description)["Description"]),
-                str(None),
+                str('NAN'),
                 make_sex_uniform(perfume.Sex),
                 process_kind_file_3(perfume.Kind)["volume_tester"],
                 process_kind_file_3(perfume.Kind)["volume_set"],

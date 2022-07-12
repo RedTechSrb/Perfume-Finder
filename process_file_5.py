@@ -6,7 +6,7 @@ from utility import *
 
 def process_unnamed_4_file_5(column_4_data):
     if pd.isna(column_4_data):
-        return {"volume_tester": None, "volume_amount": None, "volume_metadata": None}
+        return {"volume_tester": 'NAN', "volume_amount": 'NAN', "volume_metadata": 'NAN'}
 
     volume_part_lists = column_4_data.split()
     volume_tester = 'Tester' in volume_part_lists
@@ -27,13 +27,13 @@ def process_unnamed_4_file_5(column_4_data):
             filter(lambda v: (v != 'ml' and v != 'Tester'), volume_part_lists))
 
         return {"volume_tester": volume_tester,
-                "volume_amount": None,
+                "volume_amount": 'NAN',
                 "volume_metadata": volume_metadata}
 
 
 def process_unnamed_3_file_5(column_3_data):
     if pd.isna(column_3_data):
-        return {"sex": None}
+        return {"sex": 'NAN'}
     column_3_data = column_3_data.upper()
     if column_3_data.find('WOMEN & MEN') != -1:
         return {"sex": "U"}
@@ -48,18 +48,18 @@ def process_unnamed_3_file_5(column_3_data):
     elif column_3_data.find('MEN') != -1:
         return {"sex": "M"}
 
-    return {"sex": "N"}
+    return {"sex": "NEPOZNATO"}
 
 
 def process_unnamed_5_file_5(column_5_data):
     if pd.isna(column_5_data):
-        return {"volume_set": None, "Type": None}
+        return {"volume_set": 'NAN', "Type": 'NAN'}
 
     perfume_type = column_5_data
     volume_set = 'Set' == column_5_data
 
     if volume_set:
-        perfume_type = None
+        perfume_type = 'NAN'
 
     return {"volume_set": volume_set, "Type": perfume_type}
 
@@ -75,7 +75,6 @@ def process_file_5(perfume_map: PerfumeMap, excel_file):
     # _3 -> Description, sex
     # _4 -> volume_tester, volume_amount, volume_metadata
     # _5 -> Type, volume_set
-    # _6 -> Price
 
     perfume_list = [
         Perfume(str(perfume._2),
@@ -86,7 +85,7 @@ def process_file_5(perfume_map: PerfumeMap, excel_file):
                 process_unnamed_5_file_5(perfume._5)["volume_set"],
                 process_unnamed_4_file_5(perfume._4)["volume_amount"],
                 process_unnamed_4_file_5(perfume._4)["volume_metadata"],
-                perfume._6,
+                perfume.Price,
                 5)
         for perfume in data.itertuples()
     ]
