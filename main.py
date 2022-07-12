@@ -1,7 +1,5 @@
 import os
 
-import pandas as pd
-
 from process_file_2 import *
 from process_file_3 import *
 from process_file_4 import *
@@ -38,7 +36,7 @@ def write_combined_perfumes_to_xlsx(perfume_map: PerfumeMap):
         output_perfume_list_with_prices['Volume'].append(key[2])
         output_perfume_list_with_prices['Sex'].append(key[3])
         output_perfume_list_with_prices['Price'].append(perfume_map.get_minimal_price_and_parent_file(key)[0])
-        output_perfume_list_with_prices['File'].append(perfume_map.get_minimal_price_and_parent_file(key)[1])
+        output_perfume_list_with_prices['File'].append(map_file_number_to_filename(perfume_map.get_minimal_price_and_parent_file(key)[1]))
 
         output_perfume_list_without_prices['Brand'].append(key[0])
         output_perfume_list_without_prices['Description'].append(key[1])
@@ -78,10 +76,6 @@ def main():
                 process_file_6(perfume_map, os.path.join(root, filename))
             elif filename == "LUCAS.xlsx":
                 process_file_3(perfume_map, os.path.join(root, filename))
-
-#    for key, value in perfume_map.get_map().items():
-#        print(value)
-
 
     write_combined_perfumes_to_xlsx(perfume_map)
 

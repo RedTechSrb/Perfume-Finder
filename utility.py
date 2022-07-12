@@ -39,3 +39,17 @@ def make_ml_lowercase(volume):
     if pd.isna(volume):
         return 'NAN'
     return volume[0:-2] + volume[-2:].lower()
+
+def map_file_number_to_filename(filenumber: int):
+    if filenumber == 2:
+        return "ALL.xlsx"
+    elif filenumber == 3:
+        return "LUCAS.xlsx"
+    elif filenumber == 4:
+        return "KULD.xlsx"
+    elif filenumber == 5:
+        return "LILI.xlsx"
+    elif filenumber == 6:
+        return "V2.xls"
+    elif filenumber == 7:
+        return "DDP.xlsx"
