@@ -66,67 +66,23 @@ def main():
     for root, dirs, files in os.walk(root_folder):
         for filename in files:
 
-            if filename == "2.xlsx":
+            if filename == "ALL.xlsx":
                 process_file_2(perfume_map, os.path.join(root, filename))
-            elif filename == "3.xlsx":
-                process_file_3(perfume_map, os.path.join(root, filename))
-            elif filename == "4.xlsx":
+            elif filename == "KULD.xlsx":
                 process_file_4(perfume_map, os.path.join(root, filename))
-            elif filename == "5.xlsx":
-                process_file_5(perfume_map, os.path.join(root, filename))
-            elif filename == "6.xls":
-                process_file_6(perfume_map, os.path.join(root, filename))
-            elif filename == "7.xlsx":
+            elif filename == "DDP.xlsx":
                 process_file_7(perfume_map, os.path.join(root, filename))
+            elif filename == "LILI.xlsx":
+                process_file_5(perfume_map, os.path.join(root, filename))
+            elif filename == "V2.xls":
+                process_file_6(perfume_map, os.path.join(root, filename))
+            elif filename == "LUCAS.xlsx":
+                process_file_3(perfume_map, os.path.join(root, filename))
 
-    """
-    for p in perfume_map.get_map()[('CD',
-                                    'DIOR HOMME',
-                                    '100ml',
-                                    'M')]:
-        print(p)
-    print()
+#    for key, value in perfume_map.get_map().items():
+#        print(value)
 
-    for p in perfume_map.get_map()[('CHRISTIAN DIOR',
-                                    'DIOR HOMME',
-                                    None,
-                                    'M')]:
-        print(p)
-    print()
 
-    for p in perfume_map.get_map()[('CHRISTIAN DIOR',
-                                    'DIOR HOMME',
-                                    '100ml',
-                                    'M')]:
-        print(p)
-    print()
-
-    for p in perfume_map.get_map()[('CHRISTIAN DIOR',
-                                    'DIOR HOMME',
-                                    '75ml',
-                                    'M')]:
-        print(p)
-    print()
-
-    for p in perfume_map.get_map()[('CHRISTIAN DIOR',
-                                    'DIOR HOMME INTENSE',
-                                    '100ml',
-                                    'M')]:
-        print(p)
-    print()
-
-    for p in perfume_map.get_map()[('CHRISTIAN DIOR',
-                                    'DIOR HOMME EDT',
-                                    '100ml',
-                                    'M')]:
-        print(p)
-    print()
-    
-    print(perfume_map.get_minimal_price_and_parent_file(('CHRISTIAN DIOR', 'DIOR HOMME', '100ml', 'M')))
-    print(perfume_map.get_minimal_price_and_parent_file(('CHRISTIAN DIOR', 'DIOR HOMME INTENSE', '100ml', 'M')))
-    print(perfume_map.get_minimal_price_and_parent_file(('CHRISTIAN DIOR', 'DIOR HOMME EDT', '100ml', 'M')))
-    print(perfume_map.get_minimal_price_and_parent_file(('CD', 'DIOR HOMME', '100ml', 'M')))
-    """
     write_combined_perfumes_to_xlsx(perfume_map)
 
 

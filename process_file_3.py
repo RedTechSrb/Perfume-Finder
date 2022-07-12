@@ -58,7 +58,7 @@ def process_file_3(perfume_map: PerfumeMap, excel_file):
                 process_kind_file_3(perfume.Kind)["volume_set"],
                 process_description_file_3(perfume.Description)["volume_amount"],
                 process_kind_file_3(perfume.Kind)["volume_metadata"],
-                perfume._6,
+                perfume.EURO,
                 3)
         for perfume in data.itertuples()
     ]
