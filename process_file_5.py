@@ -34,13 +34,19 @@ def process_unnamed_4_file_5(column_4_data):
 def process_unnamed_3_file_5(column_3_data):
     if pd.isna(column_3_data):
         return {"sex": None}
-
-    if column_3_data.find('Women & Men') != -1:
+    column_3_data = column_3_data.upper()
+    if column_3_data.find('WOMEN & MEN') != -1:
         return {"sex": "U"}
-    elif column_3_data.find('Man') != -1:
-        return {"sex": "M"}
-    elif column_3_data.find('Woman') != -1:
+    elif column_3_data.find('UNISEX') != -1:
+        return {"sex": "U"}
+    elif column_3_data.find('WOMAN') != -1:
         return {"sex": "W"}
+    elif column_3_data.find('WOMEN') != -1:
+        return {"sex": "W"}
+    elif column_3_data.find('MAN') != -1:
+        return {"sex": "M"}
+    elif column_3_data.find('MEN') != -1:
+        return {"sex": "M"}
 
     return {"sex": "N"}
 
