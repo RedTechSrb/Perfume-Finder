@@ -18,7 +18,7 @@ class Perfume:
                self.volume_amount
 
     def get_minimal(self):
-        return self.brand, self.description, self.volume_amount
+        return self.brand, self.description, self.volume_amount, self.sex
 
     def get_parent_file(self):
         return self.parent_file

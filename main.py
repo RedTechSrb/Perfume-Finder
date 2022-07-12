@@ -18,6 +18,7 @@ def write_combined_perfumes_to_xlsx(perfume_map: PerfumeMap):
     output_perfume_list_with_prices = {'Brand': [],
                                        'Description': [],
                                        'Volume': [],
+                                       'Sex': [],
                                        'File': [],
                                        'Price': []
                                        }
@@ -25,21 +26,24 @@ def write_combined_perfumes_to_xlsx(perfume_map: PerfumeMap):
     output_perfume_list_without_prices = {'Brand': [],
                                           'Description': [],
                                           'Volume': [],
+                                          'Sex': [],
                                           'Price': []
                                           }
 
     for key, value in perfume_map.get_map().items():
-        #print(key[0], key[1], key[2], perfume_map.get_minimal_price_and_parent_file(key)[0], perfume_map.get_minimal_price_and_parent_file(key)[1])
+        #print(key[0], key[1], key[2], key[3], perfume_map.get_minimal_price_and_parent_file(key)[0], perfume_map.get_minimal_price_and_parent_file(key)[1])
 
         output_perfume_list_with_prices['Brand'].append(key[0])
         output_perfume_list_with_prices['Description'].append(key[1])
         output_perfume_list_with_prices['Volume'].append(key[2])
+        output_perfume_list_with_prices['Sex'].append(key[3])
         output_perfume_list_with_prices['File'].append(perfume_map.get_minimal_price_and_parent_file(key)[0])
         output_perfume_list_with_prices['Price'].append(perfume_map.get_minimal_price_and_parent_file(key)[1])
 
         output_perfume_list_without_prices['Brand'].append(key[0])
         output_perfume_list_without_prices['Description'].append(key[1])
         output_perfume_list_without_prices['Volume'].append(key[2])
+        output_perfume_list_without_prices['Sex'].append(key[3])
         output_perfume_list_without_prices['Price'].append('')
 
     df = pd.DataFrame(output_perfume_list_with_prices)
@@ -72,47 +76,54 @@ def main():
             elif filename == "7.xlsx":
                 process_file_7(perfume_map, os.path.join(root, filename))
 
+    """
     for p in perfume_map.get_map()[('CD',
                                     'DIOR HOMME',
-                                    '100ml')]:
+                                    '100ml',
+                                    'M')]:
         print(p)
     print()
 
     for p in perfume_map.get_map()[('CHRISTIAN DIOR',
                                     'DIOR HOMME',
-                                    None)]:
+                                    None,
+                                    'M')]:
         print(p)
     print()
 
     for p in perfume_map.get_map()[('CHRISTIAN DIOR',
                                     'DIOR HOMME',
-                                    '100ml')]:
+                                    '100ml',
+                                    'M')]:
         print(p)
     print()
 
     for p in perfume_map.get_map()[('CHRISTIAN DIOR',
                                     'DIOR HOMME',
-                                    '75ml')]:
+                                    '75ml',
+                                    'M')]:
         print(p)
     print()
 
     for p in perfume_map.get_map()[('CHRISTIAN DIOR',
                                     'DIOR HOMME INTENSE',
-                                    '100ml')]:
+                                    '100ml',
+                                    'M')]:
         print(p)
     print()
 
     for p in perfume_map.get_map()[('CHRISTIAN DIOR',
                                     'DIOR HOMME EDT',
-                                    '100ml')]:
+                                    '100ml',
+                                    'M')]:
         print(p)
     print()
-
-    print(perfume_map.get_minimal_price_and_parent_file(('CHRISTIAN DIOR', 'DIOR HOMME', '100ml')))
-    print(perfume_map.get_minimal_price_and_parent_file(('CHRISTIAN DIOR', 'DIOR HOMME INTENSE', '100ml')))
-    print(perfume_map.get_minimal_price_and_parent_file(('CHRISTIAN DIOR', 'DIOR HOMME EDT', '100ml')))
-    print(perfume_map.get_minimal_price_and_parent_file(('CD', 'DIOR HOMME', '100ml')))
-
+    
+    print(perfume_map.get_minimal_price_and_parent_file(('CHRISTIAN DIOR', 'DIOR HOMME', '100ml', 'M')))
+    print(perfume_map.get_minimal_price_and_parent_file(('CHRISTIAN DIOR', 'DIOR HOMME INTENSE', '100ml', 'M')))
+    print(perfume_map.get_minimal_price_and_parent_file(('CHRISTIAN DIOR', 'DIOR HOMME EDT', '100ml', 'M')))
+    print(perfume_map.get_minimal_price_and_parent_file(('CD', 'DIOR HOMME', '100ml', 'M')))
+    """
     write_combined_perfumes_to_xlsx(perfume_map)
 
 

@@ -9,7 +9,7 @@ class PerfumeMap:
     def insert_perfume(self, perfume: Perfume):
         new_python_key = perfume.get_minimal()
 
-        if new_python_key == ('NAN', 'NAN', 'NAN'):
+        if new_python_key == ('NAN', 'NAN', 'NAN', 'NAN'):
             return
 
         for key, value in self.perfume_map.items():
