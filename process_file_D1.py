@@ -20,7 +20,7 @@ def process_unnamed_1_file_8(column_1_data):
         volume_type = 'edt'
         column_1_data = column_1_data.replace('edt', '')
 
-    volume_amount_search = re.search('^(.*)  *(\d*)ml(.*)$', column_1_data, re.IGNORECASE)
+    volume_amount_search = re.search('^(.*)  *(\d*ml)(.*)$', column_1_data, re.IGNORECASE)
 
     if volume_amount_search:
         Description = volume_amount_search.group(1)
