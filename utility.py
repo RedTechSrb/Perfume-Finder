@@ -60,3 +60,5 @@ def map_file_number_to_filename(filenumber: int):
         return "DDP.xlsx"
     elif filenumber == 8:
         return "D1.xls"
+    elif filenumber == 9:
+        return "Lager.xlsx"

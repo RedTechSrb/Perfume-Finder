@@ -7,6 +7,7 @@ from process_file_5 import *
 from process_file_6 import *
 from process_file_7 import *
 from process_file_D1 import *
+from process_file_Lager import *
 
 
 def write_combined_perfumes_to_xlsx(perfume_map: PerfumeMap):
@@ -79,6 +80,8 @@ def main():
                 process_file_3(perfume_map, os.path.join(root, filename))
             elif filename == "D1.xls":
                 process_file_D1(perfume_map, os.path.join(root, filename))
+            elif filename == "Lager.xlsx":
+                process_file_Lager(perfume_map, os.path.join(root, filename))
 
     write_combined_perfumes_to_xlsx(perfume_map)
 
