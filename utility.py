@@ -11,6 +11,8 @@ def make_sex_uniform(sex):
         return "M"
     elif sex == "M":
         return "M"
+    elif sex == "MUSKI":
+        return "M"
     elif sex == "MUŠKI":
         return "M"
     elif sex == "WOMEN":
@@ -18,6 +20,8 @@ def make_sex_uniform(sex):
     elif sex == "W":
         return "W"
     elif sex == "WOMAN":
+        return "W"
+    elif sex == "ZENSKI":
         return "W"
     elif sex == "ŽENSKI":
         return "W"
@@ -40,6 +44,7 @@ def make_ml_lowercase(volume):
         return 'NAN'
     return volume[0:-2] + volume[-2:].lower()
 
+
 def map_file_number_to_filename(filenumber: int):
     if filenumber == 2:
         return "ALL.xlsx"
@@ -53,3 +58,5 @@ def map_file_number_to_filename(filenumber: int):
         return "V2.xls"
     elif filenumber == 7:
         return "DDP.xlsx"
+    elif filenumber == 7:
+        return "D1.xls"
