@@ -28,7 +28,7 @@ def process_file_4(perfume_map: PerfumeMap, excel_file):
     perfume_list = [
         Perfume(str(perfume.Brand),
                 str(perfume.Description),
-                str(None),
+                'NAN',
                 make_sex_uniform(perfume.Sex),
                 process_type_file_4(str(perfume.Type))["volume_tester"],
                 process_type_file_4(str(perfume.Type))["volume_set"],

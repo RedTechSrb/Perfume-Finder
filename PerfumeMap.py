@@ -7,6 +7,10 @@ class PerfumeMap:
         self.perfume_map = {}
 
     def insert_perfume(self, perfume: Perfume):
+
+        if perfume.get_parent_file() == 4:
+            print(perfume)
+
         new_python_key = perfume.get_minimal()
 
         if new_python_key == ('NAN', 'NAN', 'NAN', 'NAN'):
