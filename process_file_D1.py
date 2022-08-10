@@ -23,9 +23,9 @@ def process_unnamed_1_file_8(column_1_data):
     volume_amount_search = re.search('^(.*)  *(\d*ml)(.*)$', column_1_data, re.IGNORECASE)
 
     if volume_amount_search:
-        Description = volume_amount_search.group(1)
+        Description = volume_amount_search.group(1) + " " + volume_amount_search.group(3)
         volume_amount = volume_amount_search.group(2)
-        volume_metadata = volume_amount_search.group(3).upper().split()
+        volume_metadata = []
     else:
         Description = 'NAN'
         volume_amount = 'NAN'
@@ -61,7 +61,7 @@ def process_file_D1(perfume_map: PerfumeMap, excel_file):
 
     print("File D1.xls processing ... ")
 
-    data = pd.read_excel(excel_file)
+    data = pd.read_excel(excel_file, header=None)
 
     # _1 -> Description, Type, volume_amount, volume_metadata
     # _2 -> Brand, sex, volume_set, volume_tester
@@ -82,6 +82,7 @@ def process_file_D1(perfume_map: PerfumeMap, excel_file):
         for perfume in data.itertuples()
     ]
     for p in perfume_list:
+        print(p)
         perfume_map.insert_perfume(p)
 
     print("... finished")
