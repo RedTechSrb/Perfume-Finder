@@ -82,7 +82,6 @@ def process_file_D1(perfume_map: PerfumeMap, excel_file):
         for perfume in data.itertuples()
     ]
     for p in perfume_list:
-        print(p)
         perfume_map.insert_perfume(p)
 
     print("... finished")
