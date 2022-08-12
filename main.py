@@ -4,7 +4,7 @@ from process_file_2 import *
 from process_file_3 import *
 from process_file_4 import *
 from process_file_5 import *
-from process_file_6 import *
+from process_file_V2 import *
 from process_file_7 import *
 from process_file_D1 import *
 from process_file_Lager import *
@@ -76,7 +76,7 @@ def main():
             elif filename == "LILI.xlsx":
                 process_file_5(perfume_map, os.path.join(root, filename))
             elif filename == "V2.xls":
-                process_file_6(perfume_map, os.path.join(root, filename))
+                process_file_V2(perfume_map, os.path.join(root, filename))
             elif filename == "LUCAS.xlsx":
                 process_file_3(perfume_map, os.path.join(root, filename))
             elif filename == "D1.xls":
